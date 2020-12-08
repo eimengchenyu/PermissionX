@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickAppDetailSetting"
+            android:text="打开应用详情界面" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickNotificationPermission"
+            android:text="Android6.0 通知栏权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickAlertWindowPermission"
+            android:text="Android6.0 悬浮窗权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickWriteSettingsPermission"
+            android:text="Android6.0 系统设置权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickInstallPermission"
+            android:text="Android8.0 安装应用权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickOldStoragePermission"
+            android:text="旧版存储权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickNewStoragePermission"
+            android:text="新版存储权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickAccessBackgroundLocationPermission"
+            android:text="Android10.0 后台获取位置的权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickLocationPermission"
+            android:text="获取定位权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickAccessMediaLocationPermission"
+            android:text="Android10.0 获取照片中的位置信息" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickActivityRecognitionPermission"
+            android:text="Android10.0 获取活动步数" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickAnswerPhoneCallsPermission"
+            android:text="Android8.0 接听电话的权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickReadPhoneNumbersPermission"
+            android:text="Android8.0 读取手机号码的权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickProcessOutgoingCallsPermission"
+            android:text="旧版拨出电话的权限的权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickReadPhoneStatePermission"
+            android:text="旧版读取电话状态" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

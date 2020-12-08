@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chw.permissionx">
+
+    <application>
+        <provider
+            android:name="com.chw.permissionx.core.ApplicationContextProvider"
+            android:authorities="${applicationId}.inner.permission.context.provider"
+            android:exported="false" />
+        <activity
+            android:name="com.chw.permissionx.view.PermissionActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale|screenLayout|mcc|mnc"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+</manifest>
