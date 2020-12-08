@@ -1,16 +1,19 @@
-# 无任何依赖的权限申请框架（纯kotlin编写）
+# 权限请求框架
 
 ![](picture/1.jpg)
 
+### 使用方法：
 ```kotlin
 PermissionXUtils.requestPermissions(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             showLog = true,
             onPermissionGranded = {
+                // 权限全部申请通过
                 PermissionXUtils.logD(" 权限申请通过 ")
             },
             onPermissionDined = { dinedList, noShowRationableList ->
+                // dinedList：被拒绝的权限集合。noShowRationableList：被拒绝且不再显示弹窗的集合
                 dinedList.forEach {
                     PermissionXUtils.logD(" 权限被拒绝 = $it ")
                 }
@@ -19,3 +22,18 @@ PermissionXUtils.requestPermissions(
                 }
             })
 ```
+
+### Android8.0 ANSWER_PHONE_CALLS、READ_PHONE_NUMBERS 已做兼容处理
+
+### Android10.0 ACCESS_BACKGROUND_LOCATION、ACCESS_MEDIA_LOCATION、ACTIVITY_RECOGNITION 已做兼容处理
+Android10.0 ACCESS_BACKGROUND_LOCATION 申请后台定位权限，需要优先申请 ACCESS_FINE_LOCATION 或 ACCESS_COARSE_LOCATION，已做兼容处理
+
+### Android11.0 存储权限 MANAGE_EXTERNAL_STORAGE
+需要在AndroidManifest.xml中添加：
+```xml
+<application
+        android:requestLegacyExternalStorage="true">
+</application>
+```
+优先使用Manifest.permission.MANAGE_EXTERNAL_STORAGE进行存储权限的申请，
+当然也可以用Manifest.permission.WRITE_EXTERNAL_STORAGE和Manifest.permission.READ_EXTERNAL_STORAGE，内部已做兼容处理。

@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clickNewStoragePermission"
-            android:text="新版存储权限" />
+            android:text="Android11.0 存储权限" />
 
         <Button
             android:layout_width="wrap_content"
@@ -84,14 +84,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clickReadPhoneNumbersPermission"
-            android:text="Android8.0 读取手机号码的权限" />
+            android:onClick="clickProcessOutgoingCallsPermission"
+            android:text="旧版拨出电话的权限的权限" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clickProcessOutgoingCallsPermission"
-            android:text="旧版拨出电话的权限的权限" />
+            android:onClick="clickReadPhoneNumbersPermission"
+            android:text="Android8.0 读取手机号码的权限" />
 
         <Button
             android:layout_width="wrap_content"
