@@ -1,4 +1,14 @@
-# 权限请求框架
+# 很简单易用的权限请求框架
+
+### 引用方法
+根目录下build.gradle：allprojects下
+```gradle
+maven { url 'https://jitpack.io' }
+```
+module下的build.gradle：
+```gradle
+implementation 'com.github.eimengchenyu:PermissionX:1.0'
+```
 
 ![](picture/1.jpg)
 
