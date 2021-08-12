@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Fragment
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import com.chw.permissionx.core.PermissionChecker
 import com.chw.permissionx.core.PermissionIntent
@@ -95,7 +97,9 @@ internal class PermissionFragment : Fragment() {
      */
     private val rationalePermissions = mutableListOf<String>()
 
-    fun doRequestPermissions() {
+    private var currentOrientation: Int? = null
+
+    private fun doRequestPermissions() {
         LogUtils.d(" doRequestPermissions ")
         if (!ContextUtils.isContextValid(activity)) return
         val permissions = this.permissions
@@ -168,6 +172,15 @@ internal class PermissionFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtils.d(" $this onCreate ")
+        activity?.apply {
+            currentOrientation = requestedOrientation
+            requestedOrientation =
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                } else {
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                }
+        }
         doRequestPermissions()
     }
 
@@ -206,6 +219,7 @@ internal class PermissionFragment : Fragment() {
     }
 
     override fun onDestroy() {
+        currentOrientation?.let { activity?.apply { requestedOrientation = it } }
         super.onDestroy()
         LogUtils.d(" $this onDestroy ")
     }
