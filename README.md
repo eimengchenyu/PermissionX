@@ -7,7 +7,7 @@ maven { url 'https://jitpack.io' }
 ```
 module下的build.gradle：
 ```gradle
-implementation 'com.github.eimengchenyu:PermissionX:1.0'
+implementation 'com.github.eimengchenyu:PermissionX:1.0.1'
 ```
 
 ![](picture/1.jpg)
