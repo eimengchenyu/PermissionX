@@ -31,7 +31,4 @@ object PermissionXUtils {
     }
 
     fun hasPermissions(vararg permissions: String) = PermissionChecker.hasPermissions(permissions)
-
-    fun logD(msg: String) = LogUtils.d(msg)
-    fun logE(msg: String) = LogUtils.e(msg)
 }

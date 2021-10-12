@@ -91,6 +91,22 @@ internal object PermissionChecker {
         )
 
     /**
+     * 蓝牙权限(Android 12以下)
+     */
+    private val bluetoothPermissionLessAndroid12 = arrayOf(
+        Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN
+    )
+
+    /**
+     * 蓝牙权限(Android 12及以上)
+     */
+    private val bluetoothPermissionAndroid12 = arrayOf(
+        Manifest.permission.BLUETOOTH_CONNECT,
+        Manifest.permission.BLUETOOTH_SCAN,
+        Manifest.permission.BLUETOOTH_ADVERTISE
+    )
+
+    /**
      * 判断是否有权限
      */
     fun hasPermissions(permissions: Array<out String>): Boolean {
@@ -119,15 +135,31 @@ internal object PermissionChecker {
     fun checkPermissionValid(permissions: Array<out String>): Array<out String>? {
         val noPermissionList = mutableListOf<String>()
         for (permission in permissions) {
-            if (isSpecialPermission(permission)) {
-                // 处理特殊权限
-                if (!isSpecialPermissionHasPermission(permission) && !checkSpecialPermissionToDangerPermission(permission, noPermissionList)) {
-                    noPermissionList.add(permission)
+            when {
+                bluetoothPermissionLessAndroid12.contains(permission) -> {
+                    // 处理蓝牙权限。Android12及以上，申请了Android12以下的蓝牙权限，直接抛异常，因为这个蓝牙权限不是危险权限，不需要动态申请
+                    if (AndroidUtils.isAndroid12()) throw Android12BluetoothPermissionException()
                 }
-            } else {
+                isSpecialPermission(permission) -> {
+                    // 处理特殊权限
+                    if (!isSpecialPermissionHasPermission(permission) && !checkSpecialPermissionToDangerPermission(
+                            permission,
+                            noPermissionList
+                        )
+                    ) {
+                        noPermissionList.add(permission)
+                    }
+                }
                 // 处理未同意的危险权限
-                if (isPermissionDenied(permission) && !checkDangerPermissionToSpecialPermission(permission, noPermissionList)) {
-                    checkDangerPermissionToDangerPermission(permission, permissions, noPermissionList)
+                isPermissionDenied(permission) && !checkDangerPermissionToSpecialPermission(
+                    permission,
+                    noPermissionList
+                ) -> {
+                    checkDangerPermissionToDangerPermission(
+                        permission,
+                        permissions,
+                        noPermissionList
+                    )
                 }
             }
         }
@@ -323,6 +355,14 @@ internal object PermissionChecker {
                         permissions,
                         noPermissionList
                     )
+                }
+            }
+            else -> {
+                when {
+                    bluetoothPermissionAndroid12.contains(permission) -> {
+                        // Android12以下，申请了Android12的蓝牙权限，直接给通过，因为不需要
+                        if (!AndroidUtils.isAndroid12()) addPermission = false
+                    }
                 }
             }
         }

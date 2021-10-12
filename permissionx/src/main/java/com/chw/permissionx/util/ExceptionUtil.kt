@@ -12,6 +12,9 @@ internal class AndroidManifestPermissionEmptyException :
 internal class AndroidManifestPermissionException(permission: String) :
     RuntimeException("Request $permission is not in AndroidManifest.xml!")
 
+internal class Android12BluetoothPermissionException :
+    RuntimeException("current system is more than android12 , you need use android.permission.BLUETOOTH_CONNECT or android.permission.BLUETOOTH_SCAN or android.permission.BLUETOOTH_ADVERTISE!")
+
 internal class Android11StoragePermissionException :
     RuntimeException("current system is more than android11 , you need use android.permission.MANAGE_EXTERNAL_STORAGE , but it is not in AndroidManifest.xml!")
 

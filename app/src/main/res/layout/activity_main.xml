@@ -98,5 +98,23 @@
             android:layout_height="wrap_content"
             android:onClick="clickReadPhoneStatePermission"
             android:text="旧版读取电话状态" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickRequestBlueToothPermission"
+            android:text="申请Android12以下的蓝牙权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickRequestBlueToothPermission12"
+            android:text="申请Android12以上的蓝牙权限" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickSearchBlueTooth"
+            android:text="搜索蓝牙" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

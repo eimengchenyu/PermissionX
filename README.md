@@ -47,3 +47,7 @@ Android10.0 ACCESS_BACKGROUND_LOCATION 申请后台定位权限，需要优先�
 ```
 优先使用Manifest.permission.MANAGE_EXTERNAL_STORAGE进行存储权限的申请，
 当然也可以用Manifest.permission.WRITE_EXTERNAL_STORAGE和Manifest.permission.READ_EXTERNAL_STORAGE，内部已做兼容处理。
+
+### Android12.0 蓝牙权限 BLUETOOTH_SCAN、BLUETOOTH_ADVERTISE、BLUETOOTH_CONNECT
+Android12以下动态申请以上三个蓝牙权限，直接通过，内部已做兼容处理。
+Android12及以上若申请Android12以下的BLUETOOTH和BLUETOOTH_ADMIN，会直接抛Exception，由于这两个不是危险权限，不需要动态申请，应该没人会这样做的吧。

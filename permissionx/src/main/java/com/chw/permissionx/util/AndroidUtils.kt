@@ -16,4 +16,6 @@ internal object AndroidUtils {
     fun isAndroid10() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
 
     fun isAndroid11() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+
+    fun isAndroid12() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 }

@@ -1,33 +1,40 @@
 package com.chw.permissionx.demo
 
 import android.Manifest
+import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chw.permissionx.PermissionXUtils
 
+
 class MainActivity : AppCompatActivity() {
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
     private fun requestPermission(functionName: String, vararg permission: String) {
-        PermissionXUtils.logD(" $functionName ")
+        Log.d(TAG, " $functionName ")
         PermissionXUtils.requestPermissions(permissions = *permission,
             showLog = true,
             onPermissionGranded = {
-                PermissionXUtils.logD(" $functionName 权限申请通过 ")
+                Log.d(TAG, " $functionName 权限申请通过 ")
             },
             onPermissionDined = { dinedList, noShowRationableList ->
                 dinedList.forEach {
-                    PermissionXUtils.logD(" $functionName 权限被拒绝 = $it ")
+                    Log.d(TAG, " $functionName 权限被拒绝 = $it ")
                 }
                 noShowRationableList.forEach {
-                    PermissionXUtils.logD(" $functionName 权限被拒绝且不显示弹窗 = $it ")
+                    Log.d(TAG, " $functionName 权限被拒绝且不显示弹窗 = $it ")
                 }
             })
     }
@@ -136,5 +143,26 @@ class MainActivity : AppCompatActivity() {
             "clickReadPhoneStatePermission",
             Manifest.permission.READ_PHONE_STATE
         )
+    }
+
+    fun clickRequestBlueToothPermission(view: View) {
+        requestPermission(
+            "clickRequestBlueToothPermission",
+            Manifest.permission.BLUETOOTH,
+            Manifest.permission.BLUETOOTH_ADMIN
+        )
+    }
+
+    fun clickRequestBlueToothPermission12(view: View) {
+        requestPermission(
+            "clickRequestBlueToothPermission12",
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_ADVERTISE
+        )
+    }
+
+    fun clickSearchBlueTooth(view: View) {
+        Log.d(TAG, " BlueTooth size -> ${BluetoothAdapter.getDefaultAdapter().bondedDevices}")
     }
 }
